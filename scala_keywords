@@ -1,13 +1,24 @@
 ~~~ Scala Keywords ~~~
 
-abstract
-case
-catch
-class
-def
-do
-else
-extends
+abstract:	defines abstract class (class that allows incomplete members)
+
+case:		the statement executes when the case MATCHES the condition
+
+catch:		will catch an exception and halt program, similar to python
+
+class:		a class is a blueprint for an instance of an object. can
+		be defined as (but not limited to) abstract class, final class,
+		and sealed class. Also case class: case class <class name>
+
+def:		defines a function. A function may be called with
+		or without attributes.
+
+do:		executes a statement in the DO block as long as the WHILE
+		condition is true. A do-while loop in full form.
+
+else:		defines the statement that executes when IF returns false.
+
+extends:	
 false
 final
 finally
