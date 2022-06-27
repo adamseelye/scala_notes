@@ -68,18 +68,52 @@ package:	by using the package keyword, every item defined in the
 private:	defines a class member, object, or variable that may only
 		be accessed from the current class or companion class/object.
 		Private class members may not be accessed by sub classes.
-protected
-return
-sealed
-super
-this
-throw
-trait
-true
-try
-type
-val
-var
-while
-with
-yield
+
+protected:	defines a class member, object, or variable that may only
+		be accessed from within the class, by the companion class
+		or object, or from its derived classes.
+
+return:		returns the value of a function. Scala implicitly returns
+		the last statement of a function and so can usually
+		be avoided in code.
+
+sealed:		defines a class that can only be inherited by classes
+		defined in the same source file. SEALED and FINAL modifiers
+		cannot be used on the same class.
+
+super:		give access to super classes members
+
+this:		represents the current instance of the class. May also be
+		used to inject other classes into classes, define alternative
+		constructors, or define class/object visibility.
+
+throw:		throws an error that may be caught by a try-catch(-finally) block
+
+trait:		the trait keyword defines a class that cannot be instantiated
+
+true:		the Boolean literal value of "true"
+
+try:		a try-catch block handles runtime errors that are caught 
+		then processed through the use of pattern matching
+
+type:		the type keyword defines an ABSTRACT type; in other words,
+		it is an alias of a type defined in another class, whether
+		it is generic, abstract, or defined as a trait.
+
+val:		defines a value identifier that cannot be reassigned to
+		another value
+
+var:		defines a variable identifier that may be reassigned to
+		another value
+
+while:		executes a statement while the statement returns true
+		and stops execution when it returns false. May be used
+		in a do-while loop.
+
+with:		creates a class that inherits from multiple classes and
+		traits
+
+yield:		defines a FOR comprehension. Produces a composite value.
+		A FOR comprehension may be used to iterate over one or
+		multiple collections; as well as execute blocks of code
+		based on complex pattern matching rules.
