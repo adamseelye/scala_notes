@@ -16,25 +16,58 @@ def:		defines a function. A function may be called with
 do:		executes a statement in the DO block as long as the WHILE
 		condition is true. A do-while loop in full form.
 
-else:		defines the statement that executes when IF returns false.
+else:		defines the statement that executes when IF returns false
 
-extends:	
-false
-final
-finally
-for
-forSome
-if
-implicit
-import
-lazy
-match
-new
-null
-object
-override
-package
-private
+extends:	creates a class that inherits from another class
+
+false:		the Boolean literal value of "false"
+
+final:		defines a class that cannot be extended. Cannot be combined
+		with SEALED. final may also be used to define a class member
+		that cannot be overridden, or a constant value.
+
+finally:	the final statement of the try-catch-finally block. Will
+		execute regardless of whether an error is caught.
+
+for:		creates and runs a for loop; executes by iterating over
+		a statement or statements.
+
+forSome:	defines an alias for an existential type; an existential type
+		is a generic type to work with raw java types.
+
+if:		creates and runs a conditional execution statement. ELSE
+		is used in conjunction with if to execute a statement
+		should the if statement return false.
+
+implicit:	defines a parameter that is implicitly replaced by another
+		statement when called. This conversion method is called
+		implicit conversion.
+
+import:		imports into the module. import may be used to import classes,
+		objects, specific instances of each, and is also able to rename
+		imported entities.
+
+lazy:		defines a lazy value; that which is instantiated and evaluted 
+		when and only when it is used for the first time.
+
+match:		defines a pattern to match. match is used to execute case
+		statements within a block.
+
+new:		creates a new instance of a class (OOP)
+
+null:		assigns NULL value. Not 0, but a lack of a value.
+
+object:		an object is an instance of a (singleton) class.
+
+override:	redefines a member of a class, whether a value or method.
+		May also be used to redefine an abstract trait or method.
+
+package:	by using the package keyword, every item defined in the
+		scala file is part of the package. Useful for imports.
+
+private:	defines a class member, object, or variable that may only
+		be accessed from the current class or companion class/object.
+		Private class members may not be accessed by sub classes.
 protected
 return
 sealed
