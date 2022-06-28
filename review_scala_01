@@ -54,11 +54,40 @@ https://github.com/
 	for readability of code.
 
 - What are integer types in Scala?
+	Scala integer types include: Int, Long, Float, and Double
+
 - Decimal types?
+	Decimal types in Scala are of either the Float, Double, or Long types.
+
 - What is the size of an Int? a Double? (the default integer and decimal types)
+	An Int is a 32 bit signed value, a Double is a 64 bit signed value.
+
 - What is the difference between val and var?
+	val is immutable; var is mutable (changeable).
+
 - Why do we make use of programming paradigms like Functional Programming and Object Oriented Programming?
+	Each style supports a different set of features. In my opinion, differing use of
+	control flow is one of the main reasons to make use of each paradigm. Object
+	Oriented Programming works well for Scala because many times a certain operation
+	or set of operations needs to be performed on data that is constantly changing.
+	Functional Programming works well for a service's back-end; the amount of 
+	inputs to a system will increase much slower relative to the amount and
+	complexity of operations performed on the system over time.
+
 - What are the 4 pillars of OOP: Abstraction, Encapsulation, Inheritance, Polymorphism? (a bit on each)
+	Abstraction: 	Abstraction is the process of abstracting away the details of
+			a program to present a simpler form. If we had a Car() function,
+			with an engine(), pistons(), axle(), steering_wheel(), and pedal()
+			functions, we would present the abstract Car() to the user
+			as only containing the steering_wheel() and pedal() functions
+			as the user doesn't need to know how to turn the axle().
+
+	Encapsulation: 	Encapsulation is the process of hiding the details of a program
+			from other parts of the program. Using the above example, 
+			we would make the pistons() function private
+			to the engine, as there is no need for the steering_wheel()
+			to access the pistons().
+
 - What are classes? Objects?
 - What is the significance of the Any class in Scala?
 - What does it mean that functions are first class citizens in Scala?
