@@ -27,13 +27,32 @@ https://github.com/
 	runtime to execute the application.
 
 - How does Scala relate to Java?
-	
+	Scala inherits Java's object-oriented model and builds upon it. It may
+	be almost be thought of as a Java library instead of a separate language,
+	but there are key differences between the two that manifest as different
+	strengths and weaknesses in different situations. For instance, a Scala
+	variable is immutable by default, while Java variables are not.
 
 - What is sbt (high level)?
+	sbt is a source building tool created specifically for Scala. sbt builds
+	a "build.sbt" file which contains information on the project directory
+	structure (which has to be specific: src/main/scala) as well as information
+	on the name of the Scala file(s) to run, the version, and the Scala
+	version of the environment. sbt downloads any additional sources that are
+	required and also builds out other source files to be used for the project.
+	As soon as building is finished, the Scala program may be run.
+
 - How does Scala relate to the JRE and JVM?
+	Scala runs in the JRE on the JVM, just as Java does. Java and Scala code
+	may even be run concurrently in the same JVM instance.
 
 - Is Scala statically or dynamically typed?
+	Scala is statically typed.
+
 - Do we need to declare type for our variables in Scala? always?
+	No, though there are instances when declaring a type may be desirable
+	for readability of code.
+
 - What are integer types in Scala?
 - Decimal types?
 - What is the size of an Int? a Double? (the default integer and decimal types)
