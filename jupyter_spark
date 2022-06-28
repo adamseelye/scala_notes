@@ -1,0 +1,23 @@
+** Setting up Jupyter Notebook to work with your Hive/Spark **
+
+
+We will install Jupyter Notebook into a Python virtual environment
+in Debian Linux (Will work exactly the same with Ubuntu)
+
+
+1.  sudo apt install python3		// make sure python is installed
+2.  sudo apt-get install python3-venv	// install python virtual environments
+3.  sudo apt install pip		// install pip
+4.  cd ~				// go home
+5.  mkdir jupyter-spark			// make jupyter-spark directory (for virtual env)
+6.  cd jupyter-spark			// go to jupyter-spark
+7.  python -m venv .			// create virtual environment
+8.  source bin/activate			// activate venv
+9.  pip install --upgrade pip		// update pip to latest version
+10. pip install Jupyter			// install Jupyter Notebook
+11. pip install spylon-kernel		// install spylon-kernel (required to communicate with Spark)
+12. python -m spylon_kernel install --user	// install spylon kernel for normal user
+13. pip freeze > requirements.txt	// save package requirements in a file
+14. jupyter notebook			// start notebook
+15. navigate to URL given by Jupyter	// Make a file, change kernel to spylon kernel,
+						And Away We Go!!
