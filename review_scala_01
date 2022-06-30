@@ -87,20 +87,95 @@ https://github.com/
 			from other parts of the program. Using the above example, 
 			we would make the pistons() function private
 			to the engine, as there is no need for the steering_wheel()
-			to access the pistons().
+			to access the pistons(). Encapsulation helps guard against
+			interference from other parts of the program or malicious
+			activity.
+
+	Inheritance:	In short, an object acquires the properties of another object.
+			It is useful when altering objects; an object may be 
+			created with slightly different properties from the base class
+			while preserving the properties of the base class. It is also
+			useful for reusing code without the need to repeat lines.
+
+	Polymorphism:	Polymorphism basically means "many forms". The above example
+			of an inherited child class exhibiting different properties from 
+			the base class is also an example of polymorphism; the child
+			inherits the form of the parent and then changes form.
 
 - What are classes? Objects?
+	A class is a definition of an object; it may also be thought of as a blueprint.
+	A class only exists as abstract code until it is instantiated as an object.
+	An object is an implementation (or instantiation) of a class, and it is an
+	actual entity in computer memory that may be called to perform whichever method
+	is defined in its class.
+
 - What is the significance of the Any class in Scala?
+	The Any class is the super class (or parent) of all other classes in Scala. Scala
+	is a hierarchical language, at least in the context of classes; all varieties of
+	classes in Scala inherit in some manner from the Any class. The Any class may 
+	return any type.
+
 - What does it mean that functions are first class citizens in Scala?
+	Functions may be passed as values to other functions. Conversely, in C: function
+	pointers may be passed as values, the return values may be passed as values in
+	functions, but not dynamically-defined functions within the code. Scala allows
+	entire functions to be passed into the inputs of other functions, similar to 
+	Java (post version 8).
+
 - What is a pure function?/What is a side effect?
+	A pure function is that which always returns the same result for an argument.
+	An example is the Add function; it is expected 100% of the time to return the
+	result of "4" when the operation is "2+2". In addition, the Add function
+	does not need to modify global variables or other functions. A side effect
+	of a function is the modifying of variables/functions outside of its base
+	operation. For example, if we had x = x + 2, the side effect would be the
+	modifying of the variable x because it's value is changed every time the
+	operation is executed.
+
 - What's the difference between an expression and a statement?
+	An expression is to be evaluated; a statement is a setting of a state. 
+	x = x + 2 is an expression because the math operation of adding 2 is completed
+	before setting the value of the variable x. x = ("String") is a statement
+	because there are no evaluation operations executed; the value of x is
+	set to "String" at the beginning with no further changes.
+
 - What's the difference between a while loop and a do-while loop?
+	A while loop will evaluate if the condition is true. A do-while loop will always
+	evaluate at least once even if the condition never returned true.
+
 - How does String interpolation work in Scala?
+	Similar to python but there are a couple more characters we can use to define
+	an interpolated string (There are s, f, and raw while python has f). To print
+	a string literal, define the variable to replace part of the string, define
+	the interpolated string, and then define the location in the string by using
+	$<variable name>.
+
 - How do operators work in Scala?  Where is "+" defined?
+	There are a number of operators within Scala. Some are math functions (like "+")
+	and there are also relational operators (i.e. equal to), logical operators, and
+	bitwise operators (perform operations on bits instead of characters). "+" is
+	defined as an Arithmetic function alongside subtraction, multiplication/division,
+	modulus, and exponents.
+
 - How do we define an auxiliary constructor?
+	An auxiliary constructor is any constructor that is not the primary constructor.
+	To define an aux constructor, use the "this" keyword:
+		def this(var1: String, var2: String, var3: Int)
+			{this(var1, var2) this(var3)}
+
 - What is a REPL?
+	A REPL is a sort of command line interface to an interpreter, like the Java
+	or Python interpreters; Scala has one too. REPL stands for "Read, Evaluate, Print, Loop"
+	and a REPL may be used to interact with and run commands on a given interpreter.
+
 - How does the Scala REPL store the results of evaluated expressions?
+	The Scala REPL stores results of expressions in variables within the Interpreter
+	memory. Results are able to be called until either the REPL is reset or closed.
+
 - What is a higher order function?
+	A higher-order function is a function which takes other functions as inputs, or may 
+	also output a function.
+
 - Why might we want to write an application using pure functions instead of impure functions?
 - Why might we want mutable state (OOP) in our application?  Why might we want immutable state (FP)?
   - This question is open-ended, don't focus on finding the "right" answer
