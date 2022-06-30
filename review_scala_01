@@ -9,8 +9,8 @@ https://github.com/
 	git push
 
 - What two commands are used in sequence to save changes to our local repo?
-	git commit
-	git push
+	git add .
+	git commit -m "comment"
 
 - What is the JDK and what does it let us do?
 	JDK stands for Java Development Kit and it is a software environment that
