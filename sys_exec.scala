@@ -12,7 +12,7 @@ object sys_exec extends App {
   println("")
   println("To use commands requiring a pipe, use the '#|' operator:\n")
 
-  val pipe = "ls -la #| less" !
+  val pipe = "ps auxw" #| "grep http" !
 
   println(pipe)
 
