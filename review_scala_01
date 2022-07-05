@@ -223,15 +223,53 @@ https://github.com/
 	it is corrected.
 
 - What is Throwable?
+	Throwable is a keyword used to explicitly throw an exception in Scala, even if
+	there are no actual errors in the code. It is useful for debugging and preventing
+	code completion if there are code errors.
+	Syntax: throw new <exception name>
+
 - How would we write code that handles a thrown Exception?
+	Using a catch block with a case (or cases) defined.
+	A case will use fat arrow notation to define the
+	action to take.
+
+	catch {
+	    case i: IOException => { println("Something is terribly wrong") }
+	    case a: ArithmeticException => { println("Please go back to school") }
+	}
+
 - How do we write code to throw an Exception?
+	if (2 + 2 = 4)
+	    throw new ArithmeticException("2 + 2 equals 5")
+	else println("something isn't right here")
 
 - What does the src folder contain in an sbt project?
+	The src folder contains the main and test source subfolders.
+
 - What is a case class?-->explore
+	Just like a class can instantiate objects, a case class is used to instantiate
+	case objects as defined in the case class. A case class can also have objects
+	defined	within; methods may be executed from the case object when conditions
+	are satisfied. It is similar to a normal class in that regard. Serializable.
+
 - What methods get generated when we declare a case class?-->explore
+	A method with the same name and same number of parameters as the class is
+	generated - this is without using the keyword new.
+
 - What does the apply method do?-->explore
+	It applies a function to a value. For example, if x + x was the function,
+	and 2 was the value, we could use the apply method with the function and
+	value to get the result of 4.
+
 - What is a Thread?-->explore
+	A thread, basically, is a I/O and execution stream of a CPU. Values,
+	functions, whatever; all get passed in, executions are performed, and then
+	out goes a stream of data to the rest of the computer. Many CPUs are multi-
+	threaded or multi-cored which means that many I/O execution streams may be
+	processing in parallel.
+
 - In what situations might we want to use multiple threads? (just some)-->explore
-
-
-
+	In any application that requires large amounts of simple computations.
+	Examples are database queries and video games and websites.
+	Java and Scala are natively single-threaded though may make use of 
+	multithreading.
