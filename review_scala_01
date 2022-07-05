@@ -29,7 +29,7 @@ https://github.com/
 
 - How does Scala relate to Java?
 	Scala inherits Java's object-oriented model and builds upon it. It may
-	be almost be thought of as a Java library instead of a separate language,
+	almost be thought of as a Java library instead of a separate language,
 	but there are key differences between the two that manifest as different
 	strengths and weaknesses in different situations. For instance, a Scala
 	variable is immutable by default, while Java variables are not.
@@ -48,17 +48,20 @@ https://github.com/
 	may even be run concurrently in the same JVM instance.
 
 - Is Scala statically or dynamically typed?
-	Scala is statically typed.
+	Scala is statically typed - this means that variables are explicitly 
+	defined and are determined at compile time instead of runtime.
 
 - Do we need to declare type for our variables in Scala? always?
 	No, though there are instances when declaring a type may be desirable
-	for readability of code.
+	for readability of code. Though the variable type isn't explicitly defined
+	in Scala by the developer, the type is determined at compile time and
+	may not be altered after definition.
 
 - What are integer types in Scala?
-	Scala integer types include: Int, Long, Float, and Double
+	Scala integer types include: Byte, Int, Short, Long
 
 - Decimal types?
-	Decimal types in Scala are of either the Float, Double, or Long types.
+	Decimal types in Scala are Float and Double
 
 - What is the size of an Int? a Double? (the default integer and decimal types)
 	An Int is a 32 bit signed value, a Double is a 64 bit signed value.
@@ -113,7 +116,7 @@ https://github.com/
 	The Any class is the super class (or parent) of all other classes in Scala. Scala
 	is a hierarchical language, at least in the context of classes; all varieties of
 	classes in Scala inherit in some manner from the Any class. The Any class may 
-	return any type.
+	return any data type.
 
 - What does it mean that functions are first class citizens in Scala?
 	Functions may be passed as values to other functions. Conversely, in C: function
@@ -155,7 +158,7 @@ https://github.com/
 	and there are also relational operators (i.e. equal to), logical operators, and
 	bitwise operators (perform operations on bits instead of characters). "+" is
 	defined as an Arithmetic function alongside subtraction, multiplication/division,
-	modulus, and exponents.
+	modulus, and exponents. "+" may also be used as a concatenation operator.
 
 - How do we define an auxiliary constructor?
 	An auxiliary constructor is any constructor that is not the primary constructor.
@@ -177,13 +180,38 @@ https://github.com/
 	also output a function.
 
 - Why might we want to write an application using pure functions instead of impure functions?
+	A pure function is useful when the result of a function is required to be the same,
+	i.e. static. Think of an arithmetic squaring function. If the function was impure,
+	the output would be squared for each time the function was executed in the example
+	above. An arithmetic function that returns different output from the same input is
+	not a function at all.
+
 - Why might we want mutable state (OOP) in our application?  Why might we want immutable state (FP)?
   - This question is open-ended, don't focus on finding the "right" answer
-- What are some examples of side effects?
-- What is a Lambda?
-- How can we write Lambdas in Scala?
-- What does map do?
+	We would want to use mutable-state entities if we were working with values and inputs
+	that are not static. In a social media app, it is vital to be able to change which
+	user is logged in. An immutable state is useful in cases where a value or state
+	is required to stay the same over time. An example of an immutable state is a session
+	ID for a web browser; the ID should stay the same regardless of what the user is doing
+	(unless logging out) so that the user can stay logged in and access the service.
 
+- What are some examples of side effects?
+	Some examples of Scala side effects include state mutations, printing to the console
+	or I/O stream, or even calling another impure function.
+
+- What is a Lambda?
+	An anonymous function (unnamed). It is usually used to apply a function over a
+	collection of values. For example, in a list of integers, a Lambda defined as
+	(x: Int) => x + x would return a list of each but doubled.
+
+- How can we write Lambdas in Scala?
+	See above.
+
+- What does map do?
+	A Scala map is a collection of key-value pairs, similar to a dictionary in python.
+	Keys must be unique while that is not required for values. May have any data type
+	though must remain consistent once defined. Either mutable or immutable, default
+	immutable.
 
 - What does filter do?
 	A List filter selects elements of a list that satisify a predicate; i.e. _ < 5
