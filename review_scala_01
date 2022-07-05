@@ -189,14 +189,39 @@ https://github.com/
 	A List filter selects elements of a list that satisify a predicate; i.e. _ < 5
 
 - What does it mean that a function returns Unit in Scala?
+	A Unit is a data type in Scala. It is synonymous with Java "void". Unit does not
+	return any value or function. It is useful when defining a function that doesn't
+	return anything.
+
 - Know the basics of the following Scala Collections: (mutable? indexed? when to use it?)
-  - List
-  - Set
-  - Map
-  - ArrayBuffer
-  - Vector
+  - List: immutable, indexed; array of same-type elements, i.e. a list of names. 
+
+  - Set: both mutable and immutable (default immutable), indexed. Different type elements.
+  	 Hold strings, arrays, other sets. Use when passing different data types into a
+	 variable.
+ 
+  - Map: collection of key-value pairs (like python dictionary). Keys unique, values not.
+  	 Any data type, though must be consistent once defined. Map values to other
+	 values, like a name to an id key. Mutable.
+ 
+  - ArrayBuffer: ArrayBuffer is used to change the number of elements of an array.
+  		 Checks size of array then creates new larger array if needed.
+		 Mutable.
+
+  - Vector: immutable data structure. Provides random access to elements. May use Vector
+  	    to perform operations such as reverse and sort reliably.
+
 - What are Exceptions?
+	The program has encountered an irreconcilable error and so throws an exception;
+	many times, the program will quit if an exception is caught.
+
 - What are Errors?
+	Errors take many forms but for some reason or another are problems that arise
+	in code preventing its execution as intended. For example, in coding languages
+	like Scala, the IDE used to build the program will throw an error if something
+	is wrong and usually prevent the program from being built and/or running unless
+	it is corrected.
+
 - What is Throwable?
 - How would we write code that handles a thrown Exception?
 - How do we write code to throw an Exception?
