@@ -183,7 +183,11 @@ https://github.com/
 - What is a Lambda?
 - How can we write Lambdas in Scala?
 - What does map do?
+
+
 - What does filter do?
+	A List filter selects elements of a list that satisify a predicate; i.e. _ < 5
+
 - What does it mean that a function returns Unit in Scala?
 - Know the basics of the following Scala Collections: (mutable? indexed? when to use it?)
   - List
