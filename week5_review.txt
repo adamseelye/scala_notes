@@ -189,7 +189,7 @@ lazy evaluation
 	Does not compute value/function until needed
 
 broadcast variable
-	
+	See "What is a Broadcast Variable?" above.
 
 accumulator
 	Accumulator variables are added to each other by associative or
