@@ -1,0 +1,234 @@
+Hive
+What is Hive?
+	Hive is a tool invented by Facebook that allows for database
+	administration similar to SQL; however, there is extra 
+	functionality such as the ability to perform Map and Reduce 
+	functions as well as automatically partition datasets.
+
+Where is the default location of Hive's data in HDFS?
+	/user/hive/warehouse
+
+What is an External table?
+	A table not stored in the Hive warehouse, but can be 
+	created in Hive	and stored on HDFS.
+
+What is a managed table?
+	Any table created in Hive not explicitly defined as an external
+	table. A managed table is stored in the metastore db; all operations
+	on the table occur within Hive.
+
+What is a Hive partition?
+	A partition is a table file stored within HDFS. The number of 
+	partitions can be specified; with 2 partitions there would be
+	2 data files stored along with another file saying "SUCCESS"
+	or "FAILURE" in the filename.
+
+Provide an example of a good column or set of columns to partition on.
+	Primary keys, customer names, order numbers
+
+What's the benefit of partitioning?
+	The files are stored in a distributed manner which helps protect
+	against data loss as well as increasing the speed of some queries
+	and skip irrelevant directories and files.
+
+What does a partitioned table look like in HDFS?
+	See "What is a Hive partition?"
+
+What is a Hive bucket?
+	A Hive bucket is similar to a partition but becomes useful when
+	partitions start to become unmanageable or impractical. A Hive
+	bucket will further CLUSTER data into smaller parts in the partition
+	in a very large dataset, for example. Doing so would increase the
+	speed of search queries.
+
+What does it mean to have data skew and why does this matter when bucketing?
+	High data skew means that the data in HDFS tables is not evenly
+	distributed, i.e. when matching columns have a significantly different
+	amount of entries. This matters because bucketing becomes inefficient
+	or may even crash the more data skew there is, and so the goal is
+	to distribute data as evenly as possible.
+
+What does a bucketed table look like in HDFS?
+	The bucketed tables will each contain a portion of the data from the
+	original set. The columns will match, though additions, deletions, and
+	joins may be performed. The number of rows will match what was 
+	defined in the CLUSTER BY command.
+
+What is the Hive metastore?
+	Hive metastore is a directory used to store metadata from the DB;
+	it contains information about schema, tables, relations though
+	not the actual data.
+
+What is beeline?
+	beeline is a REPL used to execute commands on Hive.
+
+Hive Syntax questions: How do we....
+create a table?
+	CREATE TABLE <table> STORED AS ORC;
+
+load data into a table?
+	INSERT INTO <table> or LOAD DATA INPATH '<path' INTO TABLE <table>
+
+query data in a table?
+	Similar to MySQL queries; for instance SELECT, SHOW TABLES, etc.
+
+filter the records from a query?
+	Similar to MySQL - WHERE, HAVING, and LIMIT all filter records in
+	different manners.
+
+group records and find the count in each group?
+	WHERE (COUNT(group)) GROUP BY records;
+
+write the output of a query to HDFS?
+	INSERT OVERWRITE DIRECTORY '/path/to/dir' SELECT * FROM table
+
+specify we're reading from a csv file?
+	sc.textFile("<file>")
+
+Spark : Cluster Computing with Working Sets
+	
+
+What does Cluster Computing refer to?
+	Cluster Computing refers to a system where multiple computers are
+	linked together in order to parallelize operations and perform them
+	much more efficiently.
+
+What is a Working Set?
+	The set of data currently being worked with.
+
+What does RDD stand for?
+	Resilient Distributed Database.
+
+What does it mean when we say an RDD is a collection of objects partitioned across a set of machines?
+	An object isn't stored in just one spot on one machine. In an RDD, an
+	object is split into multiple files, and depending on the partition
+	configuration, the files will be distributed across nodes on one
+	machine or across nodes that are made up of a group of machines.
+
+Why do we say that MapReduce has an acyclic data flow?
+	The data flows through the graph in one direction. The data does not
+	loop through Map/Reduce functions or the graph itself.
+
+Explain the deficiency in using Hive for interactive analysis on datasets. How does Spark alleviate this problem?
+	When using MapReduce, Spark tends to be much faster because all data
+	can be retrieved from memory, while Hive performs the same operations
+	but reading and writing from disk instead.
+
+What is the lineage of an RDD?
+	An RDD lineage is a graph of all the parent objects relating to a
+	certain RDD. It is created through the application of transformations
+	on an RDD creates what is known as logical execution plan.
+
+RDDs are lazy and ephemeral. What does this mean?
+	Lazy means that it is not loaded until used, which basically means
+	it won't be loaded until runtime and called in code. Ephemeral
+	basically means self-contained; the RDD does not make wide changes to
+	the system and all data is contained within the RDD. The RDD only
+	exists as long as it is in the cache.
+
+What are the 4 ways provided to construct an RDD?
+	-parallelize (Scala collection
+	-Transformation
+	-file loading
+	-RDD persisting
+
+What does it mean to transform an RDD?
+	An RDD transformation is the creation of a new RDD from existing RDDs.
+	A Transformation is applied to the existing RDDs and outputs a new
+	RDD. The reason for doing this is that RDDs are immutable and so to
+	make any changes we must create a new one.
+
+What does it mean to cache an RDD?
+	The RDD cache is in the Worker Node cache. If an RDD is cached there,
+	it can be retrieved relatively quickly without rebuilding it.
+
+What does it mean to perform a parallel operation on an RDD?
+	A parallel operation can be either an operation executed concurrently
+	with another operation but on a different thread, or that the
+	operation can be split over multiple threads which are executed
+	concurrently.
+
+Why does Spark need special tools for shared variables, instead of just declaring, for instance, var counter=0?
+	Essentially, only global variables are seen by tasks within worker
+	nodes; tasks may have their own variables defined within but the
+	worker will not propagate any updates to those variables to other
+	nodes without using any tools.
+
+What is a broadcast variable?
+	A broadcast variable is a method for sharing variables across nodes in
+	a cluster to be used by the functions that need them when they need
+	them. To create a broadcast variable, use the broadcast() method.
+
+What is an accumulator?
+	An Accumulator is a variable that added to by another variable through 
+	associative or commutative operations. They are used to perform
+	counters like MapReduce or Sum functions.
+
+Be comfortable enough with the following terms to recognize them:
+
+RDD
+	Resilient Distributed Dataset
+
+Action
+	An Action is an RDD operation - the input of an action is the output
+	of a Transformation. A few examples are collect, reduce, countByKey,
+	and saveAsTextFile.
+
+Transformation
+	Maps, reduceByKey, groupByKey, filter
+
+lineage
+	An RDD lineage is a graph showing the relationships between RDD
+	transformations. Each RDD is shown as a node and each node is
+	connected to the other based on relationships.
+
+cache
+	Cache RDD in memory
+
+lazy evaluation
+	Does not compute value/function until needed
+
+broadcast variable
+	
+
+accumulator
+	Accumulator variables are added to each other by associative or
+	commutative operations - counter() and sum() are two examples.
+
+What are some transformations available on RDD?
+	See "Transformation" above.
+
+What is the difference between a wide and a narrow transformation in Spark?
+	Narrow transformations do not require shuffling; an example would be a
+	1-to-1 relationship in the database. Mapping words to keys would be
+	one way to accomplish a narrow transformation as there is not a need 
+	for transmitting data across the network. Wide transformations are those 
+	which require shuffling - transactions that move a large amount of data 
+	between nodes. An example would be reduceByKey.
+
+What are some actions available on an RDD?
+	See "Action" above.
+
+What is a shuffle in Spark?
+	It is when data between partitions is rearranged, or "shuffled".
+
+What's the difference in output between MapReduce wordcount in Hadoop and .map followed by .reduceByKey in Spark?
+	reduceByKey gives similar output with a couple extra features added.
+	With Spark, the output is an array instead of a list of strings. It is
+	a wide transformation that will shuffle across multiple partitions
+	(MapReduce does not do that) to perform operations on the key pair.
+	The output of reduceByKey will automatically be partitioned at either
+	the default or defined value.
+
+Why should we be careful about using accumulators outside of an action?
+	Unforseen consequences like variable altering as well as a lack of
+	persistence of data/operations.
+
+What is the closure of a task? Can we use variables in a closure?
+	The closure of a task is the methods and variables that must be
+	visible to the executor in order to compute a task. We can use
+	variables in a closure but any updates to them will not be distributed
+	across nodes.
+
+How can we see the lineage of an RDD?
+	By using the toDebugString method
