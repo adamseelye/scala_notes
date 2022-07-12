@@ -1,0 +1,26 @@
+Incorporate ETL pipelines into project 1
+	-"Extract/Transform/Load"
+
+Extract messy data, Transform it, Load into Database
+Be sure to be able to explain it for interviews
+
+"broadcast variables"
+	-is a wrapper that serializes data, sends to 
+	every data node, and reuses variable in 
+	every task that requires it.
+	spark.sparkContext.broadcast(<val>)
+
+"Accumulators"
+	-Accumulators are variables which may be added to 
+	through associative operations.
+	-There are many uses for accumulators including 
+	implementing counters or sums.
+
+Read:
+https://spark.apache.org/docs/latest/sql-ref-datatypes.htmlhttps://towardsdatascience.com/star-schema-924b995a9bdf
+
+Know:
+Data Warehousing
+OLTP
+OLAP
+ETL joins OLTP and OLAP

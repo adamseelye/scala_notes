@@ -1,0 +1,18 @@
+Portfolio deadlines:
+
+phase 1 7/13
+
+phase 2 7/25
+
+final 7/29
+
+bucketing/partitioning demo Tuesday
+
+
+Streaming, MLlib, GraphX, SparkSQL/Dataframes
+Transformations (spark) are lazily evaluated
+	-watch memory usage
+
+Remember Spark Transformations, Actions, Persistence
+
+**Airflow (Week5/Day3)

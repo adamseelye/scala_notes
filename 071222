@@ -1,0 +1,41 @@
+SBT demo
+week6/day2/sbtandsparksubmitinstructions.txt
+https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html
+
+reference 28June22 spark install instructions wk4/day2
+
+
+cd into demo directory
+sbt clean package
+cd target/scala-2.11
+spark-submit --class scalademo.HelloWorld scala-demo_2.11-0.1.jar
+-jar file is a "deliverable"
+
+***
+
+week5/day5/untitled
+test2.scala
+	-open in intellij
+
+startdfs
+startyarn
+jps
+
+cd /mnt/<day5 untitled>
+	-this command is for WSL
+
+sbt clean package
+	-create new server
+
+cd target/scala-2.13
+
+cd ../.. (untitled)
+
+spark-submit --class test2 "./target/scala-2.13/<jar file>"
+
+metastore and derby.log created in untitled dir
+
+
+EMR:
+
+
