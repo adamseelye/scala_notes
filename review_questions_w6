@@ -1,0 +1,126 @@
+- What is the lineage of an RDD?
+	In Spark, Lineage Graph is simply a graph of dependencies between new and 
+	existing RDDs.
+
+- How can we see the Lineage?
+	By using toDebugString; may then view it on the Spark web UI.
+
+- What is the logical plan?  The physical plan?
+	When we view the lineage of an RDD (by calling it with toDebugString), we can also
+	view the web UI. The web UI displays the logical execution plan; Spark will
+	use the logical execution plan to produce a physical execution plan that 
+	executes on the cluster.
+
+- How many partitions does a single task work on?
+	Each task is assigned one partition by Spark.
+
+- What’s the difference between cluster mode and client mode on YARN?
+	In cluster mode, the Spark driver runs in the application master process,
+	which itself is managed by YARN. In client mode, the Spark driver runs in the
+	client process.
+
+- What is an executor?  What are executors when we run Spark on YARN?
+	Executors exist in the worker nodes as processes in charge of running individual tasks 
+	(like collect() or read()) for each Spark job. Executors may consist of multiple tasks
+	but are component to a single worker node. 
+
+- What is AWS?
+	AWS (Amazon Web Services) offers to clients around the world a diverse
+	ecosystem of cloud computing, analytics, machine learning, and so much more.
+
+- EC2?
+	EC2 (Elastic Cloud Compute) is an Amazon web service that offers a secure
+	and resizable cloud compute allocation.
+
+- S3?
+	S3 (Simple Storage Service) is an Amazon web service that provides secure cloud
+	storage accessible from the internet.
+
+- EMR?
+	EMR (Elastic Map Reduce) is an Amazon web service providing a managed cluster
+	compute platform designed for implementing Big Data frameworks i.e. Apache Spark
+	or Hadoop.
+
+- What does it mean to run an EMR Step Execution?
+	The compute workflow is divided into steps; EMR will not progress to the next 
+	step without completing the last. Steps may be defined to perform certain
+	actions upon completion.
+
+- What is the Spark History Server?
+	It is a Spark logging and monitoring tool that presents information about
+	completed Spark applications. The information is pulled from HDFS.
+
+- What does it mean to “spill to disk” when executing spark tasks?
+	The Spark operators will write some data to disk instead of holding it in memory
+	during an operation. This makes some operations more efficient, especially 
+	with non-uniform data.
+
+- When during a Job do we need to pay attention to the number of partitions and adjust if necessary?
+	The general recommendation is to have four partitions per CPU core. Too few
+	partitions and not all of the cores will be utilized, too many and they will be 
+	overutilized.
+
+- What is spark.driver.memory?  What about spark.executor.memory?
+	The Spark driver memory is the amount of memory in use by HDFS, YARN, as well
+	as executors and other Spark daemons. Executor memory is the total sum of the
+	YARN overhead memory and the JVM heap memory.
+
+- What is a Spark Application? Job? Stage? Task?
+	A Spark application is a self-contained application (computation) that is
+	built with user-supplied code. A Job is divided into Stages, and each
+	Stage is triggered by an Action i.e. collect(), read(), or foreachRdd().
+	A Stage is a sequence of Tasks that may be run in parallel without the
+	need for shuffling.
+	Finally, a Task is a single operation applied on a partition. Each task
+	is executed in a single thread.
+
+- When we cache an RDD? << This seems to be an error.
+Assuming this is complete form:
+When we cache an RDD, can we use it across Tasks? Stages? Jobs?
+	Yes- it is persisted into memory to be available to parallel operations.	
+
+- What are Persistence Storage Levels in Spark?
+	MEMORY_ONLY:		default. stored as deserialized object to JVM memory.
+	MEMORY_ONLY_SER:	stored as serialized object to JVM memory.
+	MEMORY_ONLY_2:		stored as deserialized object; replicated to 2 cluster nodes
+	MEMORY_AND_DISK:	default of dataframe or dataset. deserialized object. excess
+				stored on disk.
+	MEMORY_AND_DISK_SER:	same as MEMORY_AND_DISK but serialized object.
+	DISK_ONLY:		dataframe stored only on disk; compute limited by disk i/o
+	OFF_HEAP:		Will cache the data away from the JVM heap;
+				useful for large datasets with limited JVM memory
+
+- Some levels have _SER, what does this mean?
+	In short, serialized. The RDD objects are stored as serialized Java objects,
+	with one byte array per partition.
+
+- Some levels have _2, what does this mean?
+	It refers to the number of partitions. (2 in this case)
+
+- If the storage level for a persist is MEMORY_ONLY and there isn't enough memory, what happens?
+	The entire RDD cannot be persisted in memory and must recompute some partitions
+	when the RDD is called.
+
+- What is the storage level for .cache()?
+	MEMORY_ONLY
+
+-Different ways to repartition?
+	Hash, coalesce, round robin, range partitioning, and writing data.
+	Hashing splits partitions based on a hash (could be a key or function)
+	Round Robin splits partitions evenly based on key columns, shuffles.
+	Coalesce merges partitions to create new ones.
+	Range partitioning is similar to Hash but splits based on a range of values.
+	And finally, writing data into a new partition will create the partition.
+
+-How to check the storage level?
+	Use the getStorageLevel method.
+
+- What is ETL?
+	Extract - Transform - Load
+	Extract the data from the source, Transform the data by cleaning and manipulating it,
+	and then Load the data into the data warehouse.
+
+- What is Audit, Balance and control?
+	During an ETL operation, an Audit will show which operations were performed.
+	Balance is determining whether the operation went as planned. Control refers to
+	the identification and resolution of errors and exceptions during the ETL operation.
