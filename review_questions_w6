@@ -162,3 +162,27 @@ When we cache an RDD, can we use it across Tasks? Stages? Jobs?
 	transformed by the OLAP system and then loaded into the data warehouse. 
 	Insights may then be gained by querying the data; insights which may be used to
 	increase the value of the business by answering whichever questions had been asked.
+
+Slowly Changing Dimensions:
+
+Type 0:
+	Changes do not occur. More specifically, type 0 encompasses dimensions
+	which do not get changed (like start date)
+Type 1:
+	Overwrite data. An employeed is assigned the "training" role at the beginning but
+	must eventually move to a different role. The employee record will be overwritten.
+Type 2:
+	Append data. An employee is promoted. A record with their old position is stored
+	in the DB while a new row with the new position is added.
+Type 3:
+	Append column. Instead of appending the updates into a new row, the history is
+	reflected in a new column containing only the previous value that had been 
+	updated. The new data is inserted into the proper column and row.
+Type 4: 
+	Similar type Type 2, history is saved into a new row. With large and rapidly-changing
+	systems, however, Type 2 is not scalable. Type 4 removes rapidly changing
+	dimensions from the primary table and creates a new table containing only 
+	the rapid dimensions, and is linked to the fact table (in a star schema).
+Type 6:
+	A combination of Type 2 and Type 3. Data are appended to both new rows and history
+	columns. Another commonly used data warehouse type (according to sqlshack.com).
