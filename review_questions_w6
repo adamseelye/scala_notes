@@ -124,3 +124,41 @@ When we cache an RDD, can we use it across Tasks? Stages? Jobs?
 	During an ETL operation, an Audit will show which operations were performed.
 	Balance is determining whether the operation went as planned. Control refers to
 	the identification and resolution of errors and exceptions during the ETL operation.
+
+- What is a data warehouse?
+	A data warehouse is a blend of technologies and components which enable the
+	storage, manipulation, and analysis of data in a business environment. 
+	There are 3 types: 	Enterprise DW - centralized warehouse providing 
+				business decision support
+				Operational Data Store - Operational data stored
+				for reporting requirements
+				Data Mart - A subset of DW. Specifically designed
+				for a line of business like retail, finance.
+
+- Give an example of a slowly changing dimension.
+	A slowly changing dimension in a database is that which is not updated often.
+	Often is a relative term, but an example would be a customer's address or
+	previous orders list on an ecommerce website.
+
+- What about scd type2?
+	This tends to be the most popular dimension type (according to sqlshack.com)
+	New DB rows are added as information is updated as opposed to overwriting the data.
+	For example, when a customer changes their address, the old entry is kept as
+	history while the new one is written into a new row.
+
+- Difference between OLTP vs OLAP? and slowly changing dimensions
+	OLTP: Online Transaction Processing. An OLTP system persists business transaction
+	data to the database; data usually consists of multiple rows/columns.
+	Data are updated frequently; the emphasis in an OLTP system is on DB 
+	processing (read/write) speed.
+
+	OLAP: Online Analytical Processing. OLAP applies complex queries to large amounts
+	of historical data, which is sourced from i.e. OLTP DB, data mining, and others.
+	Often, multiple dimensions are analyzed simultaneously to produce an aggretized
+	output. An example would be a quarterly report of retail sales trends and performance
+	based on transaction history by customer.
+
+	ETL merges the two. Data may be extracted from an OLTP database. The data is
+	transformed by the OLAP system and then loaded into the data warehouse. 
+	Insights may then be gained by querying the data; insights which may be used to
+	increase the value of the business by answering whichever questions had been asked.
