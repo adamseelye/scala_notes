@@ -1,24 +1,74 @@
 What is Spark SQL?
+	Spark SQL is a Spark module that can act as an SQL database. 
+	It provides a programming abstraction called DataFrames that
+	may be interacted with for data processing. Hive queries may
+	be sent to Spark SQL and will generall run about 100X faster
+	because the data is in memory instead of on disk.
 
 How does a broadcast join work in Spark?
+	Broadcast joins join two differently-sized tables together,
+	where one table is typically much smaller than the other.
+	They are useful for appending small dataframes to much 
+	larger dataframes.
 
 Why are broadcast joins significantly faster than shuffle joins?
+	Broadcast joins do not require shuffling. Broadcast joins
+	are used when the dataset is very large, and so a shuffle
+	operation would take much longer to complete than a broadcast.
 
 How does Spark SQL evaluate a SQL query?
+	By using Spark Context. Within Spark Context, the SQL method
+	may be called and SQL syntax commands may be passed as params.
 
 What is the catalyst optimizer?
+	The Catalyst Optimizer is a Spark feature that is used to
+	optimize SQL queries. Optimization consists of a number of
+	steps, but the idea is that one or more Spark physical plans
+	may be created for the Spark engine. To create the plan,
+	a cost model is defined to follow Rules that are then applied
+	recursively to process Trees. Models are pruned afterward
+	and the remaining models selected for implementation, with
+	the result being an optimized query set.
 
 Why are there multiple APIs to work with Spark SQL?
+	Two APIs that we can use with Spark are the SQL and
+	Dataset/DataFrame APIs. The SQL API is used for interacting
+	with a database, such as a Hive or MySQL database. The
+	Dataset/DataFrame API is used for interacting with such;
+	we can use Scala to build DataFrame objects to make complex
+	queries and analyze the data in a deeper and more efficient
+	manner. A third, the RDD API, is used to create and 
+	interact with RDDs in Spark; RDDs may be used to make queries 
+	on DataFrames/sets.
 
 What are DataFrames?
+	A DataFrame in Scala is an object that is an extension of the RDD API.
+	They are contain optimizations that allow for faster complex
+	queries and more efficient coding; this is what	makes them advantageous 
+	to traditional relational databases. A DataFrame resembles a database 
+	table; it contains columns and rows of data.
 
 What are DataSets?
+	Datasets and DataFrames are very similar. Datasets are subsets of
+	DataFrames; the main difference is that datasets offer compile-time
+	type safety - data types will not be altered at compilation time
+	while still exhibiting the optimization benefits of DataFrames.
 
 How are DataFrames and DataSets "unified" in Spark 2.0?
+	They are unified because they behave similarly in both compile and
+	run time (exception being type safety) - compile errors may be 
+	caught before runtime, and functions like select, avg, and map
+	will manipulate the data in the same way.
 
 What is the SparkSession?
+	Spark Session is the entry point to work with RDDs, DataFrames, and
+	Datasets. It is a Scala object that defines where the Spark master
+	process is, whether to use Hive context, along with other config
+	variables.
 
 Can we access the SparkContext via a SparkSession?
+	Yes, we can create a variable assigned to SparkContext: 
+	val sc = spark.sparkContext
 
 What other contexts are superseded by SparkSession?
 
