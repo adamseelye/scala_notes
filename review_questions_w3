@@ -1,0 +1,169 @@
+- What is SQL?
+- What is a relational database management system?
+- What is a database?
+- What are the sublanguages of SQL?
+	DDL
+	DML
+	DCL
+	TCL
+
+- What is cardinality?
+  - > https://en.wikipedia.org/wiki/Cardinality_(data_modeling)
+	Cardinality refers to the uniqueness of the data within
+	the database.
+
+- What is a candidate key?
+	A Candidate Key is a column or group of columns that may
+	be used to uniquely identify a row in a table.
+
+- What is referential integrity?
+	Referential integrity may be defined with certain actions
+	to take upon inserting or updating data in the database.
+	4 levels: No action, Cascade, Set Default, and Set Null.
+	No action will throw an error if attempting to update data.
+	Cascade will automatically apply changes to table rows.
+	Set Default will set foreign key columns to default values.
+	Set Null will set records to Null.
+
+- What are primary keys? Foreign keys?
+	A primary key uniquely identifies each row in a database table.
+	A foreign key is a reference to a primary key in a given table
+	and itself exists on a different table than the primary.
+
+- What are some of the different constraints on columns?
+	NOT NULL - column cannot have NULL value
+	UNIQUE - column values are unique
+	PRIMARY KEY - a combination of NOT NULL and UNIQUE
+	FOREIGN KEY - prevent table link breaking
+	CHECK - evaluate values against a condition
+	DEFAULT - set values to default
+	CREATE INDEX - create index (useful for fast search queries)
+
+- What is an entity relation diagram?
+	An ERD is a visual representation of the tables and relationships
+	within the database.
+
+- What are the differences between WHERE vs HAVING?
+	Though perform similar functions, WHERE may be used with SELECT,
+	UPDATE, and DELETE statements while HAVING may only be used with
+	SELECT. HAVING may also use aggregate functions like SUM, COUNT.
+
+- What are the differences between GROUP BY and ORDER BY?
+	GROUP BY will group rows based on matching values. ORDER BY sorts
+	in ascending or descending order (values do not match). With
+	GROUP BY, tuples are grouped by the attribute value similarity -
+	there is no analogue with ORDER BY. In essence, GROUP BY presents
+	rows, while ORDER BY presents columns.
+
+- What does LIKE do?
+	LIKE may be used to match values within queries. For instance,
+	if we were searching for a specific username in a row, we could
+	use SELECT * FROM table WHERE username LIKE "uniqueuser";
+
+- How do I use sub queries?
+	To add a sub query, enclose it with parentheses within the parent
+	query.
+
+- How does BETWEEN work? 
+	BETWEEN will check for a value that is between two other values.
+	Use in conjunction with the AND keyword.
+	I.e. SELECT * FROM table WHERE number BETWEEN 1 AND 5;
+
+- What is the order of operations in an SQL statement?
+  - > The order of a SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY query is FROM, WHERE, GROUP BY, HAVING, ORDER BY, SELECT.  The columns are actually SELECTed at the end, despite SELECT coming first.
+
+- What is the difference between an aggregate function and a scalar function?
+	Aggregate functions may be used to perform operations on the data, such as COUNT, AVG,
+	and SUM. Only single values are returned. A scalar function is very similar,
+	however, Scalar functions perform operations on single rows while Aggregates
+	perform operations over multiple rows or columns. Some examples of scalar functions
+	are UCASE, LCASE, MID, LEN, ROUND, FORMAT
+
+- What are examples of aggregate and scalar functions?
+	See above.
+
+- What are the different joins in SQL?
+  - > We have INNER, OUTER LEFT, OUTER RIGHT, and OUTER FULL joins.  INNER joins only include records with a match in the output (so records where the join condition is true).  OUTER joins includes records with a match *and* all unmatched records from the left, right, or both tables.
+  - > The part of the JOIN ```ON album.artist_id = artist.artist_id``` is the join condition.  WHen the join condition is true for a pair of records, those records are matched together in the output.  90+% of the time, the join condition will be equality based on a foreign key relationship, but you can have various strange join conditions.  A join condition of just TRUE will include all pairs of records in the output and is called a CROSS JOIN.
+- What are the different set operations in SQL? Which set operations support duplicates?
+  - > UNION, INTERSECT, UNION ALL are good to know.  UNION combines two resultsets removing duplicates, INTERSECT produces results that appear in both of two result sets, and UNION ALL combines two resultsets including duplicates.
+- What is the difference between joins and set operations?
+	A join will append columns to a table; a set will append rows to a table.
+
+- How can I create an alias in SQL? 
+	By using the AS keyword. For example, SELECT * FROM table AS t;
+	An alias is used to create reference objects as well as simplify
+	code.
+
+- What does the AS keyword do in a query? 
+	Creates an alias - see above.
+
+- What is a transaction?
+	A transaction is an operation that performs a single or multiple
+	actions within a database. Transactions may read, write, delete,
+	and update (or some combination thereof) data within a database.
+
+- What are the properties of a transaction?
+	ACID - Atomicity, Consistency, Isolation, Durability
+	Atomicity: all-or-nothing transactions. If any part of a transaction
+	fails, the entire transaction fails.
+	Consistency: Changes to the database are complete. Partly-completed
+	changes are rolled back to the previous state should a transaction
+	fail.
+	Isolation: Transactions are isolated from each other. Transactions
+	may not run concurrently if they perform the same operation, and they
+	may not access results of another transaction until the other is complete.
+
+- What are the transaction isolation levels and what do they prevent?
+	READ UNCOMMITTED: 	Read uncommitted values.
+				Prevents nothing (dirty reads, lost update, non-repeatable, phantom)
+	READ COMMITTED: 	Read only committed values. Prevent dirty reads
+	REPEATABLE READ: 	Prevent non-repeatable read, dirty reads, lost updates
+	SERIALIZABLE:		Prevent dirty reads, lost updates, non-repeatable, phantom reads
+
+- What are dirty reads, non repeatable reads, and phantom reads?
+	Dirty read: 		row values incomplete/malformed
+	Non-repeatable read:	values changed between reads within transaction
+	Phantom read:		rows changed (added/deleted) between reads within transaction
+
+- What is normalization?
+	Normalization refers to improving the integrity of the data as well as
+	reducing its redundancy. If the database is not normalized, we run the risk
+	of introducing anomalies to it. For instance, needed data may be lost upon
+	deletion of other data (deleting rows), data may be altered unneccesarily 
+	with an update command, etc.
+
+- What are the requirements for different levels of normalization?
+	1NF: A single cell may not hold multiple values.
+	2NF: 1NF prerequisite. Tables are split based on Primary Keys and a single attribute column.
+	3NF: 2NF prerequisite. Transitive functional dependencies not allowed; 	non-prime attributes
+	(those that aren't primary keys) should not depend on other non-prime attributes.
+
+- What is a view? a materialized view?
+	A view is basically a virtual table; it may be made up of entries from a single table
+	or created with a join statement between multiple tables. 
+
+- What is a dao?
+	
+
+- What is the danger of putting values directly into our queries?
+
+- How do we specify dependencies using sbt?
+- What is a port number?
+- What's the default port for Postgres?
+- What is multiplicity?  Examples of 1-to-1, 1-to-N, N-to-N?
+- What is an Index?  
+- What advantages does creating an Index give us? Disadvantages?
+- What is CRUD?
+What does it mean that an operation or transaction on a data store is atomic?
+- What does ACID stand for?
+- What does BASE stand for?
+
+out of topic
+- What is the CAP Theorem?
+- What does CAP mean for our distributed data stores when they have network problems?
+
+
+
+
+
