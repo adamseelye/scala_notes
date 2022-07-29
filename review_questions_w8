@@ -1,0 +1,366 @@
+Python
+
+Python Difference between Tuple & List?
+-while the tuples are immutable objects the lists are mutable
+
+
+Remove duplicates from a sorted list?
+-set(list)
+a_list= [1,2,3,4,4,5,5,6,6]
+z=[y for y in set(x for x in a_list)]
+z.sort()
+
+
+In the given string, print each literal followed by number of occurrences in the string.
+"yaaba daaba do"
+
+What is Python Unit test?
+
+
+Create an List in Python and print the smallest and largest items, reverse the list
+max, min? also could sort list
+a_list[::-1]
+(slicing)
+
+-----------------------------------------------------------
+SQL
+
+What is SQL?
+What is a RDBMS, relational database management system? 
+What are the sublanguages of SQL?
+DDL	CREATE ALTER DROP TRUNCATE RENAME
+DML	INSERT UPDATE DELETE
+DCL	GRANT REVOKE AUDIT
+TCL	COMMIT ROLLBACK SAVEPOINT ROLLBACK TO
+DQL	SELECT
+
+What is and How implement (multiplicity)?
+how many primary keys in table, how many foreign
+
+What are the differences between WHERE vs HAVING?
+WHERE: SELECT UPDATE DELETE before GROUP BY
+single row function
+
+HAVING: SELECT after GROUP BY (must contain)
+multiple row function
+both can have aggregates
+
+Asked me to list the 4 major joins (inner,outer, left,right)
+joins?
+
+
+Have a database script available that creates joins between tables and Query statements.
+
+What is the difference between an aggregate function and a scalar function?, examples?
+Aggregate: operations on columns: avg, count, first, last, max, min, sum
+
+Scalar:
+(UDFs) return single value, within SET, called with EXEC
+ucase, lcase, mid, len, round, now, format
+
+- What is a transaction?
+An operation within the database. It could be inserting data
+into a row or aggregating values over multiple columns to get
+complex results.
+logical unit of work, can be committed or rolled back
+
+- What are the properties of a transaction?
+Atomicity: transactions execute completely or are rolled back.
+Consistency: transactions do not alter the database if they
+		are malformed.
+Isolation: transactions do not interfere with each other.
+Durability: the database can recover from a backup in case of 
+		unexpected stoppage or failure.
+
+- What are the transaction isolation levels and what do they prevent?
+READ UNCOMMITTED: allow dirty, non-repeatable, phantom reads
+READ COMMITTED: prevent dirty reads
+REPEATABLE READ: prevent dirty and non-repeatable reads
+SERIALIZABLE: prevent dirty, non-repeatable, phantom reads
+
+what is serializable isolation level?
+Most restrictive. Transactions may only complete in logical order;
+i.e. transactions may run concurrently but only if they produce
+the same effect as if they were completed in sequence.
+
+- What is normalization?
+Cleaning and manipulating data and altering the database to
+increase efficiency, readability and to help protect against
+data loss. There are different levels, each with their own benefits.
+
+- What is the CAP Theorem?
+Applies to distributed compute systems. Only 2 of 3 characteristics
+available at a given time.
+Consistency: data consistent across all client nodes
+Availability: queries always receive response, even if node failure
+Partition Tolerance: cluster continues to work despite node failure
+
+--------------------------------------------
+Hadoop and Linux
+
+List down characteristics of Bigdata (Volume/Variety/Velocity& Variability)
+- What are the 5 Vs of big data?
+volume, velocity, value, variety, veracity
+
+Volume: amount of data
+Velocity: speed of data streams (i.e. gbps)
+Value: What is data worth to business?
+Variety: diversity of data dimensions
+Veracity: accuracy of data
+
+- ls -al
+- mkdir -p  
+- rm -r? -f -rf
+- cat (meow)
+-how do permissions work?
+Users, Groups, Everyone (Other).
+Read, Write, Execute for each category.
+3 bits assigned to files, directories corresponding to rwx in users, groups, everyone
+rwxrwxrwx = 777
+r-----r-- = 404
+r-xr-xr-x = 555
+
+what does chmod 400 do?
+r--------
+only file owner is allowed only read access
+
+- What was the "Hadoop Explosion"?
+The introduction of Hadoop created an environment that fostered the development
+and use of many other technologies, including Apache Spark, Hive, Flume.
+
+- What is Cloudera in relation to Hadoop?
+Cloudera is a company that provides Cloudera Data Platform; a platform hosting
+many cloud and data processing services, some of which are provided through
+Microsoft Azure or AWS. Many of the services provided make use of Hadoop.
+
+- What is a daemon?
+How many blocks will a 200MB file be stored in in HDFS
+2
+
+- How are DataNodes fault tolerant?
+If a partition becomes corrupted, the datanode automatically replicates
+a new partition to replace the lost data.
+
+default number of replications?
+3
+
+-What does namenode do?
+The namenode acts as a controller for the environment; it stores the
+filesystem metadata and tracks node heartbeats.
+
+-secondary and standby namenodes?
+Secondary namenode assists the namenode in completing tasks like log queries
+and file system checkpoints. The standby namenode is available in case the 
+primary fails.
+
+- what is data locality
+Data locality refers to how data is stored in a particular location.
+We could have data stored in a single partition on a single hard drive
+or the data could be distributed across a compute cluster; split across
+many partitions within a cloud like AWS RDS or S3.
+
+-what is rack awareness
+Large Hadoop clusters are split into compute racks consisting of datanodes.
+Namenodes are rack aware in that they may serve client requests to the
+rack best suited to serve them. This increases speed and efficiency.
+
+-What are heartbeats?
+Data nodes send a heartbeat (like a ping) to the namenode usually every
+3 seconds. If the namenode doesn't receive a scheduled heartbeat, it will
+assume the datanode has failed and will replicate a new one.
+
+-What is Yarn?
+Yet Another Resource Manager. It splits resource management between two nodes:
+NodeManager and ResourceManager. As the names imply, the NodeManager manages
+node resources and the ResourceManager manages all resources, including assiging
+tasks to nodemanager. The NodeManager manages all of the worker nodes.
+
+---------------------------------------
+
+Hive & data warehouse
+
+What is Hive?
+Hive is a Big Data platform invented by Facebook that is built on top of
+Hadoop and enables querying of data using SQL-like statements.
+
+describe partitioning and bucketing
+Partitions are a way of dividing data based on relations within the data,
+i.e. dates, locations, orders, etc. A Hive partition may be furthered 
+clustered into a bucket. What that means is the CLUSTER BY command
+may be used within a SELECT query to return i.e. 10 rows per cluster-
+each cluster is stored as a separate bucket (file) within hdfs.
+
+-low cardinality for partitioning
+With hash partitioning, low cardinality may become a problem because
+the partitions are based on the number of values within the key columns.
+(the number of values with a column in a specific row, basically)
+If the number of unique values is less than the number of rows, some
+partitions will have largely different sizes. This could lead to
+database inconsistency and even crash the system. 
+
+What is Hive? facebook's querying system?
+
+What is a Hive partition?
+
+What is the Hive metastore?
+Stores metadata related to Hive: filesystem, locations, nodes, etc
+
+specify we're reading from a csv file?
+CREATE TABLE Staff (id int, name string, salary double) row format delimited fields terminated by ',';
+
+
+What is OLAP vs OLTP?
+Online Analytical Processing: analyze multiple dimensions of data to make
+business decisions. Source often OLTP db.
+
+Online Transaction Processing: High-throughput database. Used for businesses
+like finance, logistics.
+
+
+What is a data warehouse?
+A centralized location that stores data. In the context of Big Data, a data
+warehouse is a system used to extract, store, and analyze data to factor
+into business decisions.
+
+What are facts and dimensions?
+A dimension is a particular category of data; it could be something
+like customer names or orders. A fact is an aggregation of dimensions
+into a data object; i.e., a customer.
+
+data warehouse, star snowflake schema of tables in data warehouse(central fact table, surrounded by dimension tables)?
+
+data warehouse concepts. asked me what scd type 2 (slowly changing dimensions)?
+
+Questions about Datawarehouse, how its modeled?
+
+what is ETL?
+
+batch load vs. history load?
+
+-----------------------------------------------------------------
+Scala
+
+- Is Scala statically or dynamically typed?
+
+- var vs val
+
+- How does Scala relate to Java?
+
+- Why do we make use of programming paradigms like Functional Programming and Object Oriented Programming?
+
+What are the 4 pillars of OOP
+- What is the significance of the Any class in Scala?
+- How does String interpolation work in Scala?
+- How do we define an auxiliary constructor?
+- What does it mean that a function returns Unit in Scala?
+
+- What is a higher order function?
+- What is a Lambda?
+- could I set function equal to value?
+what does it mean functions are first class citizens?
+- What collections do you use?
+methods used in these collections?
+- What is a case class?
+- What is a Thread?
+
+------------------------------------------------
+Spark
+
+What is the difference between an RDD and a dataframe?
+
+Are RDDs mutable or immutable? Dataframes?
+
+Spark questions
+-What is an RDD
+-What is a Dataframe
+-What is a DataSet
+-What is the difference between an RDD, DataSet and DataFrame
+-Wich one is better? When would you use one or another?
+
+Define RDD and how do you sort elements within RDD.
+-create key value pairs with map then sortByKey
+
+Define Actions in spark (commands help in transferring data from executor to driver).
+
+What are the deploy models in Apache Spark (local (or) client mode and Cluster mode).
+
+how to map a json file.
+how to flatten a JSON file
+
+What does RDD stand for? what is Rdd? how used Rdds?
+
+What does it mean to transform an RDD?
+wide vs narrow? shuffle?
+
+What does it mean to cache an RDD?
+
+
+What is a broadcast variable?
+
+What is a shuffle in Spark?
+
+What’s the difference between cluster mode and client mode on YARN?
+In cluster mode, the Spark driver runs inside an application master process which is managed by YARN on the cluster, and the client can go away after initiating the application. In client mode, the driver runs in the client process, and the application master is only used for requesting resources from YARN.
+
+What is a Spark Application? Job? Stage? Task?
+
+What is Spark SQL?
+
+How does a broadcast join work in Spark?
+Broadcast join is an important part of Spark SQL's execution engine. When used, it performs a join on two relations by first broadcasting the smaller one to all Spark executors, then evaluating the join criteria with each executor's partitions of the other relation.
+
+Why are broadcast joins significantly faster than shuffle joins?
+When the broadcasted relation is small enough, broadcast joins are fast, as they require minimal data shuffling. Above a certain threshold however, broadcast joins tend to be less reliable or performant than shuffle-based join algorithms, due to bottlenecks in network and memory usage.
+
+What is the catalyst optimizer?
+The Catalyst optimizer is a crucial component of Apache Spark. It optimizes structural queries – expressed in SQL, or via the DataFrame/Dataset APIs – which can reduce the runtime of programs and save costs.
+(logical vs physical)
+
+Difference between dataframes and datasets?
+
+Are Dataframes lazily evalauted, like RDDs?
+DataFrame – Spark evaluates DataFrame lazily, that means computation happens only when action appears (like display result, save output)
+
+how convert dataframe to dataset?
+.as[caseClassNameHere]
+
+how do you rename column in dataframe?
+withColumnRenamed
+
+List functions available to us when using DataFrames?
+select
+when
+lit
+groupBy
+orderBy
+filter
+isNotNull
+withColumn
+withColumnRenamed
+show
+join
+
+different file formats in Spark, which is best?
+What is Parquet?
+What is ORC?
+File Types use in Spark?
+
+By default which file type does .saveAsTable create?
+
+What is audit, balance, and control?
+
+--------------------------------------------------
+AWS
+
+Asked for a high-level AWS description
+
+AWS
+- What kind of services did you use with AWS?
+- Have you worked with S3 buckets?
+- What is the difference between EC2 and EMR?
+- Did you work with Amazon Lambda?
+
+
+
+
+List the python library used to access AWS services(like S3) - Boto3
