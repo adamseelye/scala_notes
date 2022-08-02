@@ -208,7 +208,10 @@ https://github.com/
 	See above.
 
 - What does map do?
-	A Scala map is a collection of key-value pairs, similar to a dictionary in python.
+	The map() function applies an expression over the values in a collection (such as a List).
+	
+	Map:
+	A Scala Map is a collection of key-value pairs, similar to a dictionary in python.
 	Keys must be unique while that is not required for values. May have any data type
 	though must remain consistent once defined. Either mutable or immutable, default
 	immutable.
