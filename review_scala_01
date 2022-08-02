@@ -35,7 +35,7 @@ https://github.com/
 	variable is immutable by default, while Java variables are not.
 
 - What is sbt (high level)?
-	sbt is a source building tool created specifically for Scala. sbt builds
+	sbt is a source building tool created specifically for Scala. sbt compiles
 	a "build.sbt" file which contains information on the project directory
 	structure (which has to be specific: src/main/scala) as well as information
 	on the name of the Scala file(s) to run, the version, and the Scala
